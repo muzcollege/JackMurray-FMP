@@ -78,6 +78,21 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        [Tooltip("Adjusting the speed whilst wall running")]
+        public float wallRunSpeed;
+
+        public enum MovementState
+        {
+            walking,
+            sprinting,
+            wallrunning,
+            crouching,
+            sliding,
+            air
+        }
+
+        public bool wallrunning;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -391,6 +406,16 @@ namespace StarterAssets
                 if (LandingAudio != null)
                     LandingAudio.Play();
 
+            }
+        }
+
+        private void StateHandler()
+        {
+            // Mode - Wallrunning
+            if (wallrunning)
+            {
+                state = MovementState.wallrunning;
+                MoveSpeed = wallRunSpeed;
             }
         }
     }
