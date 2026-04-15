@@ -1,3 +1,0 @@
-﻿internal class PlayerMovementAdvanced
-{
-}
